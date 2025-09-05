@@ -160,11 +160,11 @@
       });
     }
   }
-})({"haaho":[function(require,module,exports,__globalThis) {
+})({"7wZbQ":[function(require,module,exports,__globalThis) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
-var HMR_SERVER_PORT = 63569;
+var HMR_SERVER_PORT = 1234;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "439701173a9199ea";
 var HMR_USE_SSE = false;
@@ -667,7 +667,123 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 }
 
 },{}],"2R06K":[function(require,module,exports,__globalThis) {
+var _nanoid = require("nanoid");
+const users = [
+    {
+        name: "\u041E\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440",
+        email: "oleksandr@example.com"
+    },
+    {
+        name: "\u041C\u0430\u0440\u0456\u044F",
+        email: "maria@example.com"
+    },
+    {
+        name: "\u0406\u0432\u0430\u043D",
+        email: "ivan@example.com"
+    },
+    {
+        name: "\u0410\u043D\u0430\u0441\u0442\u0430\u0441\u0456\u044F",
+        email: "anastasia@example.com"
+    },
+    {
+        name: "\u0410\u043D\u0434\u0440\u0456\u0439",
+        email: "andrii@example.com"
+    },
+    {
+        name: "\u041E\u043B\u0435\u043D\u0430",
+        email: "olena@example.com"
+    },
+    {
+        name: "\u0414\u043C\u0438\u0442\u0440\u043E",
+        email: "dmytro@example.com"
+    },
+    {
+        name: "\u041A\u0430\u0442\u0435\u0440\u0438\u043D\u0430",
+        email: "kateryna@example.com"
+    },
+    {
+        name: "\u0421\u0435\u0440\u0433\u0456\u0439",
+        email: "serhii@example.com"
+    },
+    {
+        name: "\u042E\u043B\u0456\u044F",
+        email: "yulia@example.com"
+    }
+];
+users.forEach((item)=>{
+    item.id = (0, _nanoid.nanoid)();
+}) // console.log(users);
+;
 
-},{}]},["haaho","2R06K"], "2R06K", "parcelRequire1e49", {})
+},{"nanoid":"328Fw"}],"328Fw":[function(require,module,exports,__globalThis) {
+/* @ts-self-types="./index.d.ts" */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "urlAlphabet", ()=>(0, _indexJs.urlAlphabet));
+parcelHelpers.export(exports, "random", ()=>random);
+parcelHelpers.export(exports, "customRandom", ()=>customRandom);
+parcelHelpers.export(exports, "customAlphabet", ()=>customAlphabet);
+parcelHelpers.export(exports, "nanoid", ()=>nanoid);
+var _indexJs = require("./url-alphabet/index.js");
+let random = (bytes)=>crypto.getRandomValues(new Uint8Array(bytes));
+let customRandom = (alphabet, defaultSize, getRandom)=>{
+    let mask = (2 << Math.log2(alphabet.length - 1)) - 1;
+    let step = -~(1.6 * mask * defaultSize / alphabet.length);
+    return (size = defaultSize)=>{
+        let id = '';
+        while(true){
+            let bytes = getRandom(step);
+            let j = step | 0;
+            while(j--){
+                id += alphabet[bytes[j] & mask] || '';
+                if (id.length >= size) return id;
+            }
+        }
+    };
+};
+let customAlphabet = (alphabet, size = 21)=>customRandom(alphabet, size | 0, random);
+let nanoid = (size = 21)=>{
+    let id = '';
+    let bytes = crypto.getRandomValues(new Uint8Array(size |= 0));
+    while(size--)id += (0, _indexJs.urlAlphabet)[bytes[size] & 63];
+    return id;
+};
+
+},{"./url-alphabet/index.js":"29KoN","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"29KoN":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "urlAlphabet", ()=>urlAlphabet);
+const urlAlphabet = 'useandom-26T198340PX75pxJACKVERYMINDBUSHWOLF_GQZbfghjklqvwyzrict';
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"jnFvT":[function(require,module,exports,__globalThis) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, '__esModule', {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === 'default' || key === '__esModule' || Object.prototype.hasOwnProperty.call(dest, key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}]},["7wZbQ","2R06K"], "2R06K", "parcelRequire1e49", {})
 
 //# sourceMappingURL=js-path-5.0f77c784.js.map
