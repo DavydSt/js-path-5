@@ -17,6 +17,8 @@
     "parcel": "^2.15.4"
   },
   "dependencies": {
-    "nanoid": "^5.1.5"
+    "handlebars": "^4.7.8",
+    "nanoid": "^5.1.5",
+    "parcel-plugin-handlebars-precompile": "^1.0.2"
   }
 }
